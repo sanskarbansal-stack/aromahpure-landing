@@ -3,54 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aromahpure | Premium Selection</title>
+    <title>Aromahpure | Exclusive Senses</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #2c3e50; --accent: #d4af37; --bg: #fdfdfd; --text: #333; }
+        :root { --primary: #2c3e50; --accent: #c9a54b; --bg: #fff; --text: #333; }
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body { font-family: 'Poppins', sans-serif; background-color: var(--bg); color: var(--text); overflow-x: hidden; }
+        
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background-color: var(--bg); 
+            color: var(--text); 
+            overflow-x: hidden; 
+            /* Premium Background Image */
+            background-image: url('https://chatgpt.com/backend-api/estuary/content?id=file_00000000028071fabd7cdba44e475289&ts=493170&p=fs&cid=1&sig=1e564b7922f7af1875432e6705517111a6bf514bf7dedb3c28239117674cce20&v=0');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
         
         /* Premium Header */
-        header { text-align: center; padding: 30px 20px; background: #fff; border-bottom: 1px solid #f0f0f0; }
-        .logo { width: 150px; }
+        header { text-align: center; padding: 25px 20px; background: rgba(255,255,255,0.85); backdrop-filter: blur(5px); border-bottom: 1px solid #eee; }
+        .logo { width: 140px; }
 
         /* Sticky Tabs */
-        .nav-tabs { display: flex; justify-content: center; gap: 8px; padding: 12px; position: sticky; top: 0; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.03); }
-        .tab-btn { padding: 8px 16px; border: 1px solid #eee; border-radius: 25px; background: #fff; cursor: pointer; font-size: 0.75rem; font-weight: 500; transition: 0.3s; color: #666; }
-        .tab-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+        .nav-tabs { display: flex; justify-content: center; gap: 8px; padding: 12px; position: sticky; top: 0; background: rgba(255,255,255,0.92); backdrop-filter: blur(10px); z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+        .tab-btn { padding: 8px 16px; border: 1px solid #ddd; border-radius: 25px; background: #fff; cursor: pointer; font-size: 0.75rem; font-weight: 500; transition: 0.3s; color: #555; }
+        .tab-btn.active { background: var(--primary); color: white; border-color: var(--primary); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
 
         /* Product Cards */
-        .container { padding: 20px; max-width: 450px; margin: auto; }
-        .product-card { background: #fff; border-radius: 20px; overflow: hidden; margin-bottom: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 1px solid #f1f1f1; animation: fadeIn 0.5s ease; }
+        .container { padding: 20px; max-width: 450px; margin: auto; padding-bottom: 50px; }
+        .product-card { background: rgba(255,255,255,0.95); border-radius: 20px; overflow: hidden; margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.03); animation: fadeIn 0.5s ease; backdrop-filter: blur(2px); }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         
-        .img-container { position: relative; width: 100%; height: 350px; background: #f9f9f9; overflow: hidden; }
-        .product-img { width: 100%; height: 100%; object-fit: contain; transition: 0.5s ease; }
+        .img-container { position: relative; width: 100%; height: 350px; background: rgba(249,249,249,0.5); overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .product-img { max-width: 90%; max-height: 90%; object-fit: contain; transition: 0.5s ease; }
         
-        .product-info { padding: 20px; }
-        .brand-tag { font-size: 0.65rem; text-transform: uppercase; color: var(--accent); font-weight: 700; letter-spacing: 1.5px; display: block; margin-bottom: 5px; }
-        .product-title { font-size: 1.3rem; margin-bottom: 5px; color: var(--primary); font-family: 'Playfair Display', serif; }
-        .price { font-size: 1.1rem; font-weight: 600; margin-bottom: 20px; color: #444; }
+        .product-info { padding: 25px; }
+        .brand-tag { font-size: 0.65rem; text-transform: uppercase; color: var(--accent); font-weight: 700; letter-spacing: 2px; display: block; margin-bottom: 8px; }
+        .product-title { font-size: 1.4rem; margin-bottom: 8px; color: var(--primary); font-family: 'Playfair Display', serif; }
+        .price { font-size: 1.2rem; font-weight: 600; margin-bottom: 25px; color: #333; }
 
         /* Modern Select Box */
-        .selector-group { margin-bottom: 20px; }
-        .selector-label { font-size: 0.7rem; margin-bottom: 6px; display: block; font-weight: 700; color: #999; }
-        select { width: 100%; padding: 12px; border-radius: 12px; border: 1px solid #e0e0e0; font-family: inherit; font-size: 0.9rem; background: #fff; cursor: pointer; outline: none; }
+        .selector-group { margin-bottom: 25px; }
+        .selector-label { font-size: 0.7rem; margin-bottom: 8px; display: block; font-weight: 700; color: #888; letter-spacing: 0.5px; }
+        select { width: 100%; padding: 14px; border-radius: 12px; border: 1px solid #e0e0e0; font-family: inherit; font-size: 0.95rem; background: #fff; cursor: pointer; outline: none; appearance: none; background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%232c3e50%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'); background-repeat: no-repeat, repeat; background-position: right 14px top 50%, 0 0; background-size: 12px auto, 100%; }
 
         /* Buy Buttons */
-        .buy-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .buy-btn { text-decoration: none; text-align: center; padding: 14px; border-radius: 12px; font-size: 0.8rem; font-weight: 600; color: white; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.2s; }
+        .buy-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .buy-btn { text-decoration: none; text-align: center; padding: 16px; border-radius: 14px; font-size: 0.85rem; font-weight: 600; color: white; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.2s; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
         .amazon { background: #232f3e; }
         .flipkart { background: #2874f0; }
-        .buy-btn:active { transform: scale(0.95); }
+        .buy-btn:active { transform: scale(0.96); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
 
-        footer { text-align: center; padding: 40px 20px; font-size: 0.7rem; color: #ccc; text-transform: uppercase; letter-spacing: 2px; }
+        footer { text-align: center; padding: 40px 20px; font-size: 0.75rem; color: rgba(0,0,0,0.4); text-transform: uppercase; letter-spacing: 2px; background: rgba(255,255,255,0.7); backdrop-filter: blur(5px); }
     </style>
 </head>
 <body>
 
     <header>
-        <img src="https://aromahpure.com/cdn/shop/files/Aromahpure_Logo_1_200x.png" alt="Aromahpure" class="logo">
+        <img src="data:image/png;base64,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" alt="Aromahpure" class="logo">
     </header>
 
     <div class="nav-tabs">
@@ -66,17 +77,19 @@
     <footer>Aromahpure Luxury © 2026</footer>
 
     <script>
-        // Data Structure for all products and variants
+        // Data Structure with Naye Images aur Naye Links
         const products = [
             {
                 id: "gel-wave",
                 category: "gel-wave",
                 title: "Gel Wave Bathroom Freshener",
                 price: "₹349",
-                tag: "BATHROOM LUXURY",
+                tag: "BATHROOM FRESHNESS",
                 variants: {
-                    "Assorted Pack": {
-                        img: "https://aromahpure.com/cdn/shop/files/GelWave_1.jpg",
+                    "Ocean/Lavender/Citrus": {
+                        // Tumhari Nayi Image
+                        img: "https://aromahpure.com/cdn/shop/files/71Sbrm24f1L._SL1500.jpg?v=1760777961",
+                        // Tumhare Naye Links
                         amazon: "https://www.amazon.in/Aromahpure-Long-Lasting-Freshener-Accessories-Lavender-Musk-Ocean/dp/B0DTJ1W6PN",
                         flipkart: "https://www.flipkart.com/aromahpure-gel-wave-bathroom-freshener-assorted-set-5-gel-based-hanging-pocket-blocks-gel-wave/p/itm19b2a42c5b6f1"
                     }
@@ -87,10 +100,12 @@
                 category: "gel-wink",
                 title: "Gel Wink Car Perfume",
                 price: "₹299",
-                tag: "CAR FRAGRANCE",
+                tag: "CAR PREMIUM",
                 variants: {
                     "Lemon/Sandal/Berry": {
-                        img: "https://aromahpure.com/cdn/shop/files/GelWink_Front.jpg",
+                        // Tumhari Nayi Image
+                        img: "https://aromahpure.com/cdn/shop/files/WINK.jpg?v=1760007493",
+                        // Tumhare Naye Links
                         amazon: "https://www.amazon.in/Aromahpure-Bathroom-Freshener-Gel-Based-freshener/dp/B0FLF1H8S4",
                         flipkart: "https://www.flipkart.com/aromahpure-gel-wink-hanging-car-perfume-lemon-sandal-berry-long-lasting-easy-use-air-freshener-diffuser-gel-wink-3/p/itm295d6eda7a2d4"
                     }
@@ -101,10 +116,12 @@
                 category: "diffuser",
                 title: "Reed Diffuser Set",
                 price: "₹799",
-                tag: "HOME THERAPY",
+                tag: "HOME AROMATHERAPY",
                 variants: {
-                    "Lavender": {
-                        img: "https://aromahpure.com/cdn/shop/files/ReedDiffuser_Rose.jpg",
+                    "Premium Lavender": {
+                        // Tumhari Nayi Image (Fixed format)
+                        img: "https://m.media-amazon.com/images/I/71Y894G71KL._SL1500_.jpg",
+                        // Tumhare Naye Links
                         amazon: "https://www.amazon.in/Aromahpure-Diffuser-Lavender-Freshener-Aromatherapy/dp/B0DJD36FQN",
                         flipkart: "https://www.flipkart.com/aromahpure-lavender-diffuser-set-4-fiber-reed-sticks-room-air-freshener-home-long-lasting/p/itmd77e65585908e"
                     }
@@ -132,8 +149,8 @@
                         </div>
 
                         <div class="buy-buttons">
-                            <a href="${p.variants[Object.keys(p.variants)[0]].amazon}" class="buy-btn amazon" id="amz-${p.id}" onclick="trackClick('${p.id}', 'Amazon')">AMAZON</a>
-                            <a href="${p.variants[Object.keys(p.variants)[0]].flipkart}" class="buy-btn flipkart" id="fk-${p.id}" onclick="trackClick('${p.id}', 'Flipkart')">FLIPKART</a>
+                            <a href="${p.variants[Object.keys(p.variants)[0]].amazon}" class="buy-btn amazon" id="amz-${p.id}" target="_blank">AMAZON</a>
+                            <a href="${p.variants[Object.keys(p.variants)[0]].flipkart}" class="buy-btn flipkart" id="fk-${p.id}" target="_blank">FLIPKART</a>
                         </div>
                     </div>
                 </div>
@@ -144,8 +161,14 @@
             const product = products.find(p => p.id === pid);
             const variant = product.variants[variantName];
             
-            // Update UI
-            document.getElementById(`img-${pid}`).src = variant.img;
+            // Update UI with animation
+            const img = document.getElementById(`img-${pid}`);
+            img.style.opacity = 0;
+            setTimeout(() => {
+                img.src = variant.img;
+                img.style.opacity = 1;
+            }, 200);
+            
             document.getElementById(`amz-${pid}`).href = variant.amazon;
             document.getElementById(`fk-${pid}`).href = variant.flipkart;
         }
@@ -158,20 +181,8 @@
             });
         }
 
-        // INITIAL TRACKING LOGIC (Placeholder for now)
-        function trackClick(product, platform) {
-            console.log(`Tracking: User clicked ${product} on ${platform}`);
-            // Yahan hum Google Sheets wala function call karenge next step mein
-        }
-
         // Load Products
         renderProducts();
-
-        // Scroll Depth Tracking
-        window.onscroll = function() {
-            let scrollPercent = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight * 100;
-            if(scrollPercent > 90) console.log("User reached bottom");
-        };
     </script>
 </body>
 </html>
