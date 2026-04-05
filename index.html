@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aromahpure | Premium Selection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #2c3e50; --accent: #d4af37; --bg: #fdfdfd; --text: #333; }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--bg); color: var(--text); overflow-x: hidden; }
+        
+        /* Premium Header */
+        header { text-align: center; padding: 30px 20px; background: #fff; border-bottom: 1px solid #f0f0f0; }
+        .logo { width: 150px; }
+
+        /* Sticky Tabs */
+        .nav-tabs { display: flex; justify-content: center; gap: 8px; padding: 12px; position: sticky; top: 0; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.03); }
+        .tab-btn { padding: 8px 16px; border: 1px solid #eee; border-radius: 25px; background: #fff; cursor: pointer; font-size: 0.75rem; font-weight: 500; transition: 0.3s; color: #666; }
+        .tab-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+
+        /* Product Cards */
+        .container { padding: 20px; max-width: 450px; margin: auto; }
+        .product-card { background: #fff; border-radius: 20px; overflow: hidden; margin-bottom: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 1px solid #f1f1f1; animation: fadeIn 0.5s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .img-container { position: relative; width: 100%; height: 350px; background: #f9f9f9; overflow: hidden; }
+        .product-img { width: 100%; height: 100%; object-fit: contain; transition: 0.5s ease; }
+        
+        .product-info { padding: 20px; }
+        .brand-tag { font-size: 0.65rem; text-transform: uppercase; color: var(--accent); font-weight: 700; letter-spacing: 1.5px; display: block; margin-bottom: 5px; }
+        .product-title { font-size: 1.3rem; margin-bottom: 5px; color: var(--primary); font-family: 'Playfair Display', serif; }
+        .price { font-size: 1.1rem; font-weight: 600; margin-bottom: 20px; color: #444; }
+
+        /* Modern Select Box */
+        .selector-group { margin-bottom: 20px; }
+        .selector-label { font-size: 0.7rem; margin-bottom: 6px; display: block; font-weight: 700; color: #999; }
+        select { width: 100%; padding: 12px; border-radius: 12px; border: 1px solid #e0e0e0; font-family: inherit; font-size: 0.9rem; background: #fff; cursor: pointer; outline: none; }
+
+        /* Buy Buttons */
+        .buy-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .buy-btn { text-decoration: none; text-align: center; padding: 14px; border-radius: 12px; font-size: 0.8rem; font-weight: 600; color: white; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.2s; }
+        .amazon { background: #232f3e; }
+        .flipkart { background: #2874f0; }
+        .buy-btn:active { transform: scale(0.95); }
+
+        footer { text-align: center; padding: 40px 20px; font-size: 0.7rem; color: #ccc; text-transform: uppercase; letter-spacing: 2px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="https://aromahpure.com/cdn/shop/files/Aromahpure_Logo_1_200x.png" alt="Aromahpure" class="logo">
+    </header>
+
+    <div class="nav-tabs">
+        <button class="tab-btn active" onclick="filter('all', this)">All</button>
+        <button class="tab-btn" onclick="filter('gel-wave', this)">Gel Wave</button>
+        <button class="tab-btn" onclick="filter('gel-wink', this)">Gel Wink</button>
+        <button class="tab-btn" onclick="filter('diffuser', this)">Diffusers</button>
+    </div>
+
+    <div class="container" id="product-list">
+        </div>
+
+    <footer>Aromahpure Luxury © 2026</footer>
+
+    <script>
+        // Data Structure for all products and variants
+        const products = [
+            {
+                id: "gel-wave",
+                category: "gel-wave",
+                title: "Gel Wave Bathroom Freshener",
+                price: "₹349",
+                tag: "BATHROOM LUXURY",
+                variants: {
+                    "Assorted Pack": {
+                        img: "https://aromahpure.com/cdn/shop/files/GelWave_1.jpg",
+                        amazon: "https://www.amazon.in/Aromahpure-Long-Lasting-Freshener-Accessories-Lavender-Musk-Ocean/dp/B0DTJ1W6PN",
+                        flipkart: "https://www.flipkart.com/aromahpure-gel-wave-bathroom-freshener-assorted-set-5-gel-based-hanging-pocket-blocks-gel-wave/p/itm19b2a42c5b6f1"
+                    }
+                }
+            },
+            {
+                id: "gel-wink",
+                category: "gel-wink",
+                title: "Gel Wink Car Perfume",
+                price: "₹299",
+                tag: "CAR FRAGRANCE",
+                variants: {
+                    "Lemon/Sandal/Berry": {
+                        img: "https://aromahpure.com/cdn/shop/files/GelWink_Front.jpg",
+                        amazon: "https://www.amazon.in/Aromahpure-Bathroom-Freshener-Gel-Based-freshener/dp/B0FLF1H8S4",
+                        flipkart: "https://www.flipkart.com/aromahpure-gel-wink-hanging-car-perfume-lemon-sandal-berry-long-lasting-easy-use-air-freshener-diffuser-gel-wink-3/p/itm295d6eda7a2d4"
+                    }
+                }
+            },
+            {
+                id: "diffuser",
+                category: "diffuser",
+                title: "Reed Diffuser Set",
+                price: "₹799",
+                tag: "HOME THERAPY",
+                variants: {
+                    "Lavender": {
+                        img: "https://aromahpure.com/cdn/shop/files/ReedDiffuser_Rose.jpg",
+                        amazon: "https://www.amazon.in/Aromahpure-Diffuser-Lavender-Freshener-Aromatherapy/dp/B0DJD36FQN",
+                        flipkart: "https://www.flipkart.com/aromahpure-lavender-diffuser-set-4-fiber-reed-sticks-room-air-freshener-home-long-lasting/p/itmd77e65585908e"
+                    }
+                }
+            }
+        ];
+
+        function renderProducts() {
+            const container = document.getElementById('product-list');
+            container.innerHTML = products.map(p => `
+                <div class="product-card" data-cat="${p.category}" id="card-${p.id}">
+                    <div class="img-container">
+                        <img src="${p.variants[Object.keys(p.variants)[0]].img}" class="product-img" id="img-${p.id}">
+                    </div>
+                    <div class="product-info">
+                        <span class="brand-tag">${p.tag}</span>
+                        <h2 class="product-title">${p.title}</h2>
+                        <p class="price">${p.price}</p>
+                        
+                        <div class="selector-group">
+                            <label class="selector-label">SELECT VARIANT</label>
+                            <select onchange="updateVariant('${p.id}', this.value)">
+                                ${Object.keys(p.variants).map(v => `<option value="${v}">${v}</option>`).join('')}
+                            </select>
+                        </div>
+
+                        <div class="buy-buttons">
+                            <a href="${p.variants[Object.keys(p.variants)[0]].amazon}" class="buy-btn amazon" id="amz-${p.id}" onclick="trackClick('${p.id}', 'Amazon')">AMAZON</a>
+                            <a href="${p.variants[Object.keys(p.variants)[0]].flipkart}" class="buy-btn flipkart" id="fk-${p.id}" onclick="trackClick('${p.id}', 'Flipkart')">FLIPKART</a>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function updateVariant(pid, variantName) {
+            const product = products.find(p => p.id === pid);
+            const variant = product.variants[variantName];
+            
+            // Update UI
+            document.getElementById(`img-${pid}`).src = variant.img;
+            document.getElementById(`amz-${pid}`).href = variant.amazon;
+            document.getElementById(`fk-${pid}`).href = variant.flipkart;
+        }
+
+        function filter(c, b) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            b.classList.add('active');
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.style.display = (c === 'all' || card.dataset.cat === c) ? 'block' : 'none';
+            });
+        }
+
+        // INITIAL TRACKING LOGIC (Placeholder for now)
+        function trackClick(product, platform) {
+            console.log(`Tracking: User clicked ${product} on ${platform}`);
+            // Yahan hum Google Sheets wala function call karenge next step mein
+        }
+
+        // Load Products
+        renderProducts();
+
+        // Scroll Depth Tracking
+        window.onscroll = function() {
+            let scrollPercent = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight * 100;
+            if(scrollPercent > 90) console.log("User reached bottom");
+        };
+    </script>
+</body>
+</html>
