@@ -8,13 +8,7 @@
     <style>
         :root { --primary: #2c3e50; --accent: #78a22f; }
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body { 
-            font-family: 'Poppins', sans-serif; 
-            background: #f4f4f4; 
-            background-image: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('bg.jpg'); 
-            background-size: cover; 
-            background-attachment: fixed; 
-        }
+        body { font-family: 'Poppins', sans-serif; background: #f4f4f4; background-image: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('bg.jpg'); background-size: cover; background-attachment: fixed; }
         header { text-align: center; padding: 25px; background: #fff; border-bottom: 1px solid #eee; }
         .logo { width: 160px; }
         .nav-tabs { display: flex; justify-content: center; gap: 8px; padding: 12px; position: sticky; top: 0; background: rgba(255,255,255,0.95); z-index: 100; border-bottom: 1px solid #f0f0f0; backdrop-filter: blur(10px); }
@@ -29,13 +23,12 @@
         .buy-btn { text-decoration: none; padding: 14px; border-radius: 12px; font-size: 0.8rem; font-weight: 600; color: white; transition: 0.2s; }
         .amazon { background: #232f3e; }
         .flipkart { background: #2874f0; }
-        .buy-btn:active { transform: scale(0.95); }
-        footer { text-align: center; padding: 40px; color: #aaa; font-size: 0.7rem; letter-spacing: 1px; }
+        footer { text-align: center; padding: 40px; color: #aaa; font-size: 0.7rem; }
     </style>
 </head>
 <body>
 
-    <header><img src="logo.png" class="logo" alt="Aromahpure"></header>
+    <header><img src="logo.png" class="logo"></header>
 
     <div class="nav-tabs">
         <button class="tab-btn active" onclick="filter('all', this)">All</button>
@@ -47,30 +40,25 @@
     <div class="container" id="product-list">
         <div class="product-card" data-cat="wave">
             <div class="img-container"><img src="wave.jpg" class="product-img"></div>
-            <div class="product-info">
-                <h3 style="font-family: 'Playfair Display', serif;">Gel Wave Pocket</h3>
+            <div class="product-info"><h3>Gel Wave Pocket</h3>
                 <div class="buy-buttons">
                     <a href="https://www.amazon.in/dp/B0DTJ1W6PN" class="buy-btn amazon" onclick="logClick('Gel Wave', 'Amazon')">AMAZON</a>
                     <a href="https://www.flipkart.com/p/itm19b2a42c5b6f1" class="buy-btn flipkart" onclick="logClick('Gel Wave', 'Flipkart')">FLIPKART</a>
                 </div>
             </div>
         </div>
-
         <div class="product-card" data-cat="wink">
             <div class="img-container"><img src="wink.jpg" class="product-img"></div>
-            <div class="product-info">
-                <h3 style="font-family: 'Playfair Display', serif;">Gel Wink Series</h3>
+            <div class="product-info"><h3>Gel Wink Series</h3>
                 <div class="buy-buttons">
                     <a href="https://www.amazon.in/dp/B0FLF1H8S4" class="buy-btn amazon" onclick="logClick('Gel Wink', 'Amazon')">AMAZON</a>
                     <a href="https://www.flipkart.com/p/itm295d6eda7a2d4" class="buy-btn flipkart" onclick="logClick('Gel Wink', 'Flipkart')">FLIPKART</a>
                 </div>
             </div>
         </div>
-
         <div class="product-card" data-cat="reed">
             <div class="img-container"><img src="reed.jpg" class="product-img"></div>
-            <div class="product-info">
-                <h3 style="font-family: 'Playfair Display', serif;">Reed Diffuser Set</h3>
+            <div class="product-info"><h3>Reed Diffuser Set</h3>
                 <div class="buy-buttons">
                     <a href="https://www.amazon.in/dp/B0DJD36FQN" class="buy-btn amazon" onclick="logClick('Reed Diffuser', 'Amazon')">AMAZON</a>
                     <a href="https://www.flipkart.com/p/itmd77e65585908e" class="buy-btn flipkart" onclick="logClick('Reed Diffuser', 'Flipkart')">FLIPKART</a>
@@ -82,21 +70,20 @@
     <footer>AROMAHPURE LUXURY &copy; 2026</footer>
 
     <script>
-        // --- CONFIG ---
-        const SCRIPT_URL = "PASTE_YOUR_SCRIPT_URL_HERE"; // <--- APNA URL YAHAN DALO
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbztpPImi_kY57qxEdEjk-pGxbJIArDYf9DFHGLuHe738e_rGZrE-6nWJcpDJnHF-64G/exec"; 
 
-        // --- PERSISTENT UNIQUE ID LOGIC ---
-        function getUserId() {
-            let id = localStorage.getItem('aromahpure_user_id');
-            if (!id) {
-                id = 'USER-' + Math.random().toString(36).substr(2, 9).toUpperCase();
-                localStorage.setItem('aromahpure_user_id', id);
+        // PERSISTENT ID LOGIC
+        function initId() {
+            let savedId = localStorage.getItem('aromahpure_uid');
+            if (!savedId) {
+                savedId = 'USER-' + Math.random().toString(36).substr(2, 9).toUpperCase();
+                localStorage.setItem('aromahpure_uid', savedId);
             }
-            return id;
+            return savedId;
         }
 
         let sessionData = {
-            uniqueId: getUserId(),
+            uniqueId: initId(),
             device: /Mobi|Android/i.test(navigator.userAgent) ? "Mobile" : "Desktop",
             visitTime: new Date().toLocaleString(),
             amazonClicks: [],
@@ -107,7 +94,9 @@
             userAgent: navigator.userAgent
         };
 
-        // Fetch Location & IP
+        // Verification for you
+        console.log("Current User ID:", sessionData.uniqueId);
+
         fetch('https://ipapi.co/json/').then(res => res.json()).then(data => {
             sessionData.location = data.city + ", " + data.region;
             sessionData.ip = data.ip;
@@ -116,7 +105,7 @@
         function logClick(product, platform) {
             if (platform === 'Amazon') sessionData.amazonClicks.push(product);
             if (platform === 'Flipkart') sessionData.flipkartClicks.push(product);
-            sendData(); // Live update on click
+            sendData();
         }
 
         window.onscroll = function() {
@@ -129,7 +118,7 @@
             sessionData.leaveTime = new Date().toLocaleString();
             const start = new Date(sessionData.visitTime).getTime();
             sessionData.timeSpent = Math.round((new Date().getTime() - start) / 1000) + "s";
-
+            
             const payload = JSON.stringify(sessionData);
             if (navigator.sendBeacon) {
                 navigator.sendBeacon(SCRIPT_URL, payload);
@@ -138,7 +127,6 @@
             }
         }
 
-        // Send data when user minimizes app or closes tab
         document.addEventListener('visibilitychange', function() {
             if (document.visibilityState === 'hidden') sendData();
         });
